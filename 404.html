@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/handshake.png">
+    <title>404 - Page Not Found | PeaceBuild</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#1e40af' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 transition-colors duration-300 antialiased font-sans overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full z-50 px-4 md:px-6 py-4 flex justify-between items-center bg-transparent">
+        <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+        <div class="flex items-center space-x-2 md:space-x-3">
+            <button onclick="toggleDirection()" class="h-9 md:h-10 px-2 md:px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex items-center space-x-1 md:space-x-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+                <i class="fas fa-language text-gray-500 text-sm"></i>
+                <span id="dir-label" class="text-[10px] md:text-xs font-bold uppercase text-gray-700 dark:text-gray-200">LTR</span>
+            </button>
+            <button onclick="toggleTheme()" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+                <i id="theme-icon" class="fas fa-moon text-gray-500 text-sm"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="min-h-screen flex items-center justify-center p-4 md:p-6 relative">
+        <div class="absolute top-1/4 left-1/4 w-32 md:w-64 h-32 md:h-64 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 md:w-96 h-48 md:h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+
+        <div class="text-center relative z-10 w-full max-w-2xl mt-12 md:mt-0">
+            <div class="relative inline-block mb-4 md:mb-8">
+                <h1 class="text-8xl sm:text-[120px] md:text-[180px] font-black text-gray-200 dark:text-gray-800/40 leading-none select-none">
+                    404
+                </h1>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <p class="text-xl sm:text-2xl md:text-4xl font-bold text-gray-900 dark:text-white whitespace-nowrap">Lost in Conflict?</p>
+                </div>
+            </div>
+
+            <p class="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-8 md:mb-10 px-2 max-w-md mx-auto">
+                The page you're looking for seems to have vanished. Even the best mediators get lost sometimes. Let's get you back to neutral ground.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 px-4 sm:px-0">
+                <a href="index.html" class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-primary text-white font-bold rounded-2xl shadow-xl shadow-blue-500/20 hover:bg-blue-600 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center text-sm md:text-base">
+                    <i class="fas fa-home mr-2"></i> Return Home
+                </a>
+                <button onclick="history.back()" class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 font-bold rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all flex items-center justify-center text-sm md:text-base">
+                    <i class="fas fa-arrow-left mr-2"></i> Go Back
+                </button>
+            </div>
+
+            <div class="mt-12 md:mt-16 pt-6 md:pt-8 border-t border-gray-100 dark:border-gray-900">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 md:mb-6">Common Destinations</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm font-bold text-gray-500">
+                    <a href="courses.html" class="hover:text-primary transition-colors">Courses</a>
+                    <a href="about.html" class="hover:text-primary transition-colors">About Us</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const root = document.getElementById('root-html');
+        const themeIcon = document.getElementById('theme-icon');
+        const dirLabel = document.getElementById('dir-label');
+
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+            }
+            if (localStorage.getItem('direction') === 'rtl') {
+                root.setAttribute('dir', 'rtl');
+                dirLabel.innerText = 'RTL';
+            }
+        };
+
+        function toggleTheme() {
+            if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                themeIcon.className = 'fas fa-moon text-gray-500';
+                localStorage.setItem('theme', 'light');
+            } else {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleDirection() {
+            if (root.getAttribute('dir') === 'rtl') {
+                root.setAttribute('dir', 'ltr');
+                dirLabel.innerText = 'LTR';
+                localStorage.setItem('direction', 'ltr');
+            } else {
+                root.setAttribute('dir', 'rtl');
+                dirLabel.innerText = 'RTL';
+                localStorage.setItem('direction', 'rtl');
+            }
+        }
+    </script>
+</body>
+</html>

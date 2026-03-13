@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/handshake.png">
+    <title>NGO Conflict Resolution Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af', // Blue 800
+                        secondary: '#0f766e', // Teal 700
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for better UI */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-track { background: #1f2937; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+<nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            
+            <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <div id="desktop-nav" class="hidden lg:flex lg:space-x-2 xl:space-x-4 items-center">
+                <a href="index.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Home</a>
+                <a href="home2.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Home2</a>
+                <a href="course.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Courses</a>
+                <a href="instructor.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Instructors</a>
+                <a href="resosurce.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Resources</a>
+                
+                <div class="relative group">
+                    <button class="flex items-center hover:text-primary px-2 py-2 text-sm font-medium">
+                        Dashboard <i class="fas fa-chevron-down ml-1 text-[10px]"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block w-48 bg-white dark:bg-gray-700 shadow-xl rounded-md mt-1 py-2 border border-gray-100 dark:border-gray-600">
+                        <a href="user.html" class="nav-link block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">User Dashboard</a>
+                        <a href="admin.html" class="nav-link block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Contact</a>
+            </div>
+
+            <div class="hidden lg:flex items-center lg:space-x-2 xl:space-x-3">
+                <button onclick="toggleTheme()" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <button onclick="toggleDir()" class="text-[10px] font-bold border border-gray-300 dark:border-gray-600 px-2 py-1 rounded hover:bg-primary hover:text-white transition-all">
+                    LTR/RTL
+                </button>
+               <a href="login.html" 
+   class="text-gray-900 dark:text-white 
+          /* Consistent Font Size & Weight */
+          text-base font-bold
+          
+          /* Mobile/Tablet Padding (< 1024px) */
+          px-4 py-2 
+          
+          /* 1024px (lg) - Laptop Padding */
+          lg:px-5 lg:py-2
+          
+          /* 1280px+ (xl) - Desktop Padding */
+          xl:px-7 xl:py-2.5
+          
+          /* Button Styling */
+          border-2 border-primary/20 hover:border-primary
+          rounded-lg transition-all duration-300 transform 
+          active:scale-95 inline-flex items-center justify-center 
+          whitespace-nowrap hover:bg-primary/5">
+    Login
+</a>
+   
+            </div>
+
+            <div class="lg:hidden flex items-center space-x-3">
+                <button onclick="toggleTheme()" class="p-2 text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-circle-half-stroke text-lg"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-gray-500 hover:text-primary p-2 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 shadow-inner">
+        <div id="mobile-nav" class="px-4 pt-2 pb-6 space-y-1">
+            <a href="index.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Home</a>
+            <a href="home2.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Home2</a>
+            <a href="course.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Courses</a>
+            <a href="resosurce.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Resources</a>
+            <a href="instructor.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Instructor</a>
+            <a href="contact.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Contact</a>
+            
+            <div class="py-1">
+                <button onclick="toggleMobileDashboard()" class="w-full flex justify-between items-center px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                    Dashboard
+                    <i id="mobile-dash-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+                <div id="mobile-dash-content" class="hidden pl-6 mt-1 space-y-1 bg-gray-50 dark:bg-gray-900/40 rounded-lg">
+                    <a href="user.html" class="nav-link block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 border-l-2 border-transparent">User Dashboard</a>
+                    <a href="admin.html" class="nav-link block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 border-l-2 border-transparent">Admin Dashboard</a>
+                </div>
+            </div>
+            
+            <div class="pt-4 space-y-3">
+                <button onclick="toggleDir()" class="w-full text-center px-3 py-2 text-sm font-bold text-secondary border border-secondary rounded-md">
+                    <i class="fas fa-language mr-2"></i>Switch LTR/RTL
+                </button>
+                <div class="flex flex-col items-center justify-center w-full px-6 py-8">
+    
+    <div class="w-full max-w-[280px] mx-auto">
+        <a href="login.html" 
+           class="flex items-center justify-center py-3.5 border-2 border-primary text-primary dark:text-blue-400 dark:border-blue-500/50 rounded-xl font-bold transition-all active:scale-95 hover:bg-primary/5">
+           Login
+        </a>
+    </div>
+
+   
+</div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <script>
+        function setActiveNavLink() {
+    // Get the current page filename (e.g., "index.html")
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    
+    // Select all links you want to monitor
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+
+        if (linkPath === currentPath) {
+            // Desktop/Standard Styles
+            link.classList.add('text-primary', 'font-bold');
+            
+            // Mobile Specific Styles (adds a background to active item)
+            if (link.parentElement.id === 'mobile-nav') {
+                link.classList.add('bg-blue-50', 'dark:bg-gray-700', 'text-primary');
+            }
+
+            // Dashboard Sub-link Styles
+            if (linkPath === 'user.html' || linkPath === 'admin.html') {
+                link.classList.add('border-primary');
+                link.classList.remove('border-transparent');
+                
+                // If it's a mobile sub-link, auto-open the dashboard accordion
+                const mobileDashContent = document.getElementById('mobile-dash-content');
+                if (mobileDashContent && link.closest('#mobile-dash-content')) {
+                    mobileDashContent.classList.remove('hidden');
+                    document.getElementById('mobile-dash-arrow').classList.add('rotate-180');
+                }
+            }
+        }
+    });
+}
+
+// Run the function when the page loads
+window.addEventListener('DOMContentLoaded', setActiveNavLink);
+    </script>
+
+<section class="py-16 bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-4">Get in <span class="text-primary">Touch</span></h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Have questions about our training programs? Our team is here to help you navigate your peace-building journey.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+            
+            <div class="lg:col-span-4 space-y-8 order-2 lg:order-1">
+                <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-3xl border border-transparent hover:border-primary/20 transition-all">
+                    <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-bold text-gray-900 dark:text-white">Our Office</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">123 Peace Plaza, Suite 45<br>Geneva, Switzerland</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-bold text-gray-900 dark:text-white">Email Us</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">support@peacebuild.org<br>info@peacebuild.org</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-bold text-gray-900 dark:text-white">Call Us</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">+1 (234) 567-890<br>Mon-Fri, 9am - 6pm</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-gray-200 dark:border-gray-800">
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Follow Our Impact</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-sm flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 order-1 lg:order-2">
+                <form action="#" class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white dark:bg-gray-900 p-8 md:p-10 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-800">
+                    <div class="flex flex-col">
+                        <label class="text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Full Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-transparent focus:bg-white dark:focus:bg-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Email Address</label>
+                        <input type="email" placeholder="john@ngo.org" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-transparent focus:bg-white dark:focus:bg-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all">
+                    </div>
+                    <div class="sm:col-span-2 flex flex-col">
+                        <label class="text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Subject</label>
+                        <select class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-transparent focus:bg-white dark:focus:bg-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+                            <option>General Inquiry</option>
+                            <option>Workshop Request</option>
+                            <option>Partnership</option>
+                            <option>Technical Support</option>
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2 flex flex-col">
+                        <label class="text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Your Message</label>
+                        <textarea rows="5" placeholder="How can we help you?" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-transparent focus:bg-white dark:focus:bg-gray-700 focus:ring-2 focus:ring-primary outline-none transition-all resize-none"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <button type="submit" class="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="w-full h-[300px] md:h-[450px] rounded-3xl overflow-hidden shadow-inner grayscale hover:grayscale-0 transition-all duration-700 border border-gray-100 dark:border-gray-800">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.4722285458025!2d6.14028631558235!3d46.20439067911681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c652e07e60e81%3A0x86701b228f4f346!2sGeneva!5e0!3m2!1sen!2sch!4v1625612345678!5m2!1sen!2sch" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+ <footer class="bg-gray-100 dark:bg-gray-900 pt-16 pb-8 border-t dark:border-gray-800 font-sans transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+               <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium max-w-xs">
+                    Dedicated to empowering global NGOs with the tools needed to navigate complex interpersonal and organizational disputes.
+                </p>
+                <div class="flex space-x-5 mt-6 justify-center md:justify-start">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="w-full text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">
+                    Quick Links
+                </h4>
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-4 text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    <li class="flex justify-center md:justify-start">
+                        <a href="index.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Home
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="about.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>About
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="courses.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Courses
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="instructors.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Instructor
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="contact.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Contact
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="404.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>404
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="resosurce.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Resources
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="comingsoon.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Comingsoon
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Contact Us</h4>
+                <ul class="text-sm space-y-5 text-gray-600 dark:text-gray-400 font-medium">
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <span>123 Peace Plaza, Geneva</span>
+                    </li>
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span>info@ngo-training.org</span>
+                    </li>
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span>+1 234 567 890</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Newsletter</h4>
+                <p class="text-sm mb-6 text-gray-600 dark:text-gray-400 font-medium">Stay updated with our latest strategies.</p>
+                <form class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none text-sm transition-all">
+                    <button class="bg-primary text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors font-bold text-sm shadow-lg shadow-blue-500/20">
+                        Join
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-8 mt-8 flex flex-col items-center md:flex-row md:justify-between text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest text-center">
+            <p class="mb-4 md:mb-0">&copy; 2026 NGO Training Portal. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.className = 'fas fa-moon';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // Direction Toggle Logic
+        function toggleDir() {
+            const html = document.documentElement;
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        }
+
+        // Load Preferences
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = 'fas fa-sun';
+            }
+            if (localStorage.getItem('direction')) {
+                document.documentElement.setAttribute('dir', localStorage.getItem('direction'));
+            }
+        };
+        // Toggle Mobile Dashboard Dropdown
+function toggleMobileDashboard() {
+    const content = document.getElementById('mobile-dash-content');
+    const arrow = document.getElementById('mobile-dash-arrow');
+    
+    content.classList.toggle('hidden');
+    // Rotates the arrow when open
+    arrow.classList.toggle('rotate-180');
+}
+
+// Ensure the mobile menu button still works
+// const btn = document.getElementById('mobile-menu-button');
+// const menu = document.getElementById('mobile-menu');
+// btn.addEventListener('click', () => {
+//     menu.classList.toggle('hidden');
+// });
+    </script>
+</body>
+</html>

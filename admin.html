@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="admin-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/handshake.png">
+    <title>Admin Panel | PEACE NGO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { primary: '#1e40af' } } }
+        }
+    </script>
+    <style>
+        .active-tab { @apply bg-slate-900 text-white dark:bg-primary dark:text-white shadow-lg; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-gray-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <header class="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900 border-b dark:border-white/10 sticky top-0 z-50">
+        <div class="flex items-center">
+             <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button onclick="toggleSidebar()" class="p-2 text-xl"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <div class="flex min-h-screen">
+       <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r dark:border-white/10 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 lg:static">
+    <div class="p-6 h-full flex flex-col">
+        
+        <a href="index.html" class="flex-shrink-0 mb-10 hidden lg:block">
+            <div class="flex items-center group cursor-pointer">
+                <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                    <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white uppercase">
+                        PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                    </span>
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mt-0.5">Admin Panel</span>
+                </div>
+            </div>
+        </a>
+
+        <nav class="space-y-1 flex-grow overflow-y-auto no-scrollbar">
+            <button onclick="switchTab('overview')" class="nav-link active-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all text-sm">
+                <i class="fas fa-chart-line w-5"></i> Overview
+            </button>
+            <button onclick="switchTab('users')" class="nav-link w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-sm">
+                <i class="fas fa-user-shield w-5"></i> User Management
+            </button>
+            <button onclick="switchTab('courses')" class="nav-link w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-sm">
+                <i class="fas fa-layer-group w-5"></i> Course Catalog
+            </button>
+            <button onclick="switchTab('workshops')" class="nav-link w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-sm">
+                <i class="fas fa-map-marked-alt w-5"></i> Workshops
+            </button>
+            <button onclick="switchTab('reports')" class="nav-link w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-sm">
+              <i class="fas fa-chart-bar w-5"></i> Impact Reports
+            </button>
+            
+            <hr class="my-6 border-slate-100 dark:border-white/5">
+            
+        
+        </nav>
+
+        <div class="mt-auto pt-6 space-y-3">
+            <div class="flex bg-slate-100 dark:bg-white/5 p-1.5 rounded-2xl">
+                <button onclick="toggleTheme()" class="flex-1 py-2 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition-all text-xs shadow-sm">
+                    <i class="fas fa-adjust text-slate-600 dark:text-yellow-400"></i>
+                </button>
+                <button onclick="toggleDirection()" class="flex-1 py-2 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition-all text-[9px] font-black uppercase tracking-tighter">
+                    LTR/RTL
+                </button>
+            </div>
+            <a href="signup.html">
+                <button class="w-full py-4 bg-red-500/10 text-red-500 font-black text-[11px] uppercase tracking-widest rounded-2xl hover:bg-red-500 hover:text-white transition-all">
+               LogOut
+            </button>
+            </a>
+            
+        </div>
+    </div>
+</aside>
+
+        <main class="flex-1 p-4 md:p-8 lg:p-10 overflow-x-hidden">
+            
+            <div id="overview" class="tab-content active animate-fade-in">
+                <div class="mb-10">
+                    <h1 class="text-3xl font-black tracking-tight">System Overview</h1>
+                    <p class="text-slate-500">Real-time performance metrics for Peace NGO.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/5 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-users"></i></div>
+                        <h3 class="text-2xl font-black">1,284</h3>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Total Users</p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/5 shadow-sm">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-book"></i></div>
+                        <h3 class="text-2xl font-black">24</h3>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Courses</p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/5 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-award"></i></div>
+                        <h3 class="text-2xl font-black">850</h3>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Certs Issued</p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/5 shadow-sm">
+                        <div class="w-12 h-12 bg-orange-500/10 text-orange-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-calendar-check"></i></div>
+                        <h3 class="text-2xl font-black">12</h3>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Workshops</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border dark:border-white/5 shadow-sm">
+                    <h3 class="font-black mb-6">Enrollment Activity (Last 6 Months)</h3>
+                    <div class="h-48 w-full flex items-end gap-4 px-4 border-b dark:border-white/10">
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[40%] hover:bg-primary transition-all"></div>
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[60%] hover:bg-primary transition-all"></div>
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[35%] hover:bg-primary transition-all"></div>
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[85%] hover:bg-primary transition-all"></div>
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[50%] hover:bg-primary transition-all"></div>
+                        <div class="flex-1 bg-primary/20 rounded-t-lg h-[75%] hover:bg-primary transition-all"></div>
+                    </div>
+                </div>
+            </div>
+
+           <div id="users" class="tab-content animate-fade-in">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
+        <div>
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white">User Directory</h2>
+            <p class="text-sm text-slate-500">Manage 1,284 registered peacebuilders and staff members.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+            <div class="relative flex-grow lg:flex-grow-0 lg:w-64">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" placeholder="Search by name or email..." class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border dark:border-white/10 rounded-xl text-xs outline-none focus:ring-2 focus:ring-primary/20">
+            </div>
+            <button class="px-6 py-3 bg-primary text-white font-black rounded-xl text-xs shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">
+                <i class="fas fa-user-plus mr-2"></i> ADD USER
+            </button>
+        </div>
+    </div>
+
+    <div class="flex gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
+        <button class="whitespace-nowrap px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-[10px] font-black rounded-lg uppercase">All Users</button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white dark:bg-slate-900 text-slate-500 border dark:border-white/10 text-[10px] font-black rounded-lg uppercase hover:border-primary transition-all">Organization: Red Cross</button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white dark:bg-slate-900 text-slate-500 border dark:border-white/10 text-[10px] font-black rounded-lg uppercase hover:border-primary transition-all">Status: Pending</button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white dark:bg-slate-900 text-slate-500 border dark:border-white/10 text-[10px] font-black rounded-lg uppercase hover:border-primary transition-all">Role: Instructor</button>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-[2rem] border dark:border-white/10 overflow-hidden shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 dark:bg-white/5 border-b dark:border-white/10">
+                    <tr>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary">
+                        </th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">Full Name</th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">Org / Role</th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">Assigned Course</th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">Progress</th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest">Status</th>
+                        <th class="px-6 py-5 text-[10px] font-black uppercase text-slate-400 tracking-widest text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y dark:divide-white/5">
+                    <tr class="group hover:bg-slate-50/50 dark:hover:bg-white/2 transition-colors">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" class="rounded border-slate-300 text-primary">
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">JD</div>
+                                <div>
+                                    <p class="font-bold text-sm text-slate-900 dark:text-white">John Doe</p>
+                                    <p class="text-[10px] text-slate-400">john@ngo-peace.org</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="text-xs font-bold text-slate-600 dark:text-slate-300">Peace NGO</p>
+                            <p class="text-[10px] text-slate-400">Field Liaison</p>
+                        </td>
+                        <td class="px-6 py-4 text-xs font-medium">Mediation Training</td>
+                        <td class="px-6 py-4">
+                            <div class="w-24">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-[9px] font-bold text-slate-400">45%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-white/5 h-1 rounded-full">
+                                    <div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[9px] font-black rounded uppercase">Active</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-primary transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-red-500 transition-all"><i class="fas fa-trash text-xs"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="group hover:bg-slate-50/50 dark:hover:bg-white/2 transition-colors">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" class="rounded border-slate-300">
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center font-bold text-xs">ST</div>
+                                <div>
+                                    <p class="font-bold text-sm text-slate-900 dark:text-white">Sarah Taylor</p>
+                                    <p class="text-[10px] text-slate-400">s.taylor@global.org</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="text-xs font-bold text-slate-600 dark:text-slate-300">UNICEF</p>
+                            <span class="text-[9px] font-black text-purple-500 bg-purple-500/10 px-1.5 rounded uppercase">Instructor</span>
+                        </td>
+                        <td class="px-6 py-4 text-xs font-medium">Conflict 101</td>
+                        <td class="px-6 py-4">
+                            <span class="text-[10px] font-bold text-slate-300">N/A</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-400 text-[9px] font-black rounded uppercase">Idle</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-primary transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-red-500 transition-all"><i class="fas fa-trash text-xs"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="px-6 py-4 bg-slate-50/50 dark:bg-white/2 border-t dark:border-white/5 flex items-center justify-between">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Showing 1-10 of 1,284 Users</p>
+            <div class="flex gap-2">
+                <button class="w-8 h-8 rounded-lg border dark:border-white/10 flex items-center justify-center text-slate-400 hover:bg-white dark:hover:bg-slate-800"><i class="fas fa-chevron-left text-xs"></i></button>
+                <button class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center text-xs font-bold">1</button>
+                <button class="w-8 h-8 rounded-lg border dark:border-white/10 flex items-center justify-center text-slate-400 hover:bg-white dark:hover:bg-slate-800"><i class="fas fa-chevron-right text-xs"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="courses" class="tab-content animate-fade-in">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
+        <div>
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white">Course Management</h2>
+            <p class="text-sm text-slate-500">Design, deploy, and track NGO training modules.</p>
+        </div>
+        <div class="flex items-center gap-3 w-full lg:w-auto">
+            <div class="flex-1 lg:flex-none px-4 py-2 bg-white dark:bg-slate-900 border dark:border-white/10 rounded-xl text-center">
+                <span class="block text-lg font-black text-primary">24</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase">Live</span>
+            </div>
+            <div class="flex-1 lg:flex-none px-4 py-2 bg-white dark:bg-slate-900 border dark:border-white/10 rounded-xl text-center">
+                <span class="block text-lg font-black text-orange-500">06</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase">Drafts</span>
+            </div>
+            <button class="flex-[2] lg:flex-none px-6 py-4 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all text-xs">
+                + NEW COURSE
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        
+        <div class="group bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] font-black rounded-full uppercase tracking-widest">Live</span>
+                    <div class="flex gap-2">
+                        <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-400"><i class="fas fa-eye text-xs"></i></button>
+                        <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-400"><i class="fas fa-cog text-xs"></i></button>
+                    </div>
+                </div>
+                
+                <h4 class="text-xl font-black text-slate-900 dark:text-white mb-2">Conflict Fundamentals</h4>
+                <p class="text-xs text-slate-500 mb-6 italic">Instructor: Dr. Smith (Mediation Expert)</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="p-3 bg-slate-50 dark:bg-white/5 rounded-2xl">
+                        <span class="block text-sm font-black text-slate-900 dark:text-white">412</span>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase">Enrolled</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 dark:bg-white/5 rounded-2xl">
+                        <span class="block text-sm font-black text-slate-900 dark:text-white">88%</span>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase">Passing</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-6 border-t dark:border-white/5">
+                    <div class="flex -space-x-2">
+                        <div class="w-7 h-7 bg-red-500/10 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-900" title="PDFs"><i class="fas fa-file-pdf text-[10px] text-red-500"></i></div>
+                        <div class="w-7 h-7 bg-blue-500/10 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-900" title="Videos"><i class="fas fa-play text-[10px] text-blue-500"></i></div>
+                        <div class="w-7 h-7 bg-slate-100 dark:bg-white/10 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-900 text-[8px] font-bold text-slate-400">+4</div>
+                    </div>
+                    <button class="text-xs font-black text-primary hover:underline">Manage Lessons</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="group bg-white dark:bg-slate-900 rounded-[2.5rem] border-2 border-dashed border-slate-200 dark:border-white/5 overflow-hidden opacity-80 hover:opacity-100 transition-all duration-300">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-white/5 text-slate-500 text-[10px] font-black rounded-full uppercase tracking-widest">Draft</span>
+                    <button class="text-slate-300"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                
+                <h4 class="text-xl font-black text-slate-400 dark:text-slate-500 mb-2 uppercase tracking-tighter">NGO Policy 2026</h4>
+                <p class="text-xs text-slate-400 mb-6">Unassigned Instructor</p>
+                
+                <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-2xl mb-8">
+                    <div class="flex justify-between text-[10px] font-bold mb-2">
+                        <span class="text-slate-400 uppercase">Setup Progress</span>
+                        <span class="text-slate-500">60%</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden">
+                        <div class="bg-slate-400 h-full" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <button class="w-full py-4 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 font-black rounded-2xl text-xs hover:bg-primary hover:text-white transition-all">
+                    COMPLETE SETUP
+                </button>
+            </div>
+        </div>
+
+        <button class="group bg-primary/5 hover:bg-primary/10 border-2 border-dashed border-primary/20 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center transition-all duration-300">
+            <div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-primary shadow-xl mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-plus text-xl"></i>
+            </div>
+            <h4 class="font-black text-slate-900 dark:text-white">New Curriculum</h4>
+            <p class="text-xs text-slate-500 mt-2 max-w-[150px]">Upload materials and set up your syllabus</p>
+        </button>
+
+    </div>
+</div>
+<div id="workshops" class="tab-content animate-fade-in">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+        <div>
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white">Workshop Scheduler</h2>
+            <p class="text-sm text-slate-500">Coordinate live training sessions and field workshops.</p>
+        </div>
+        <div class="flex gap-3 w-full lg:w-auto">
+            <button class="flex-1 lg:flex-none px-6 py-4 bg-white dark:bg-slate-900 border dark:border-white/10 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-50 transition-all">
+                Calendar View
+            </button>
+            <button class="flex-1 lg:flex-none px-6 py-4 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all text-[11px] uppercase tracking-widest">
+                + Schedule Event
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 overflow-hidden shadow-sm mb-10">
+        <div class="p-6 border-b dark:border-white/5 flex items-center justify-between">
+            <h3 class="font-black text-slate-900 dark:text-white">Upcoming Schedule</h3>
+            <div class="flex gap-2">
+                <span class="px-3 py-1 bg-blue-500/10 text-blue-500 text-[9px] font-black rounded-full uppercase">8 Online</span>
+                <span class="px-3 py-1 bg-orange-500/10 text-orange-500 text-[9px] font-black rounded-full uppercase">4 In-Person</span>
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-slate-50 dark:bg-white/5">
+                    <tr>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400">Workshop Title</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400">Date & Mode</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400">Instructor</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400">Capacity</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y dark:divide-white/5">
+                    <tr class="group hover:bg-slate-50/50 dark:hover:bg-white/2 transition-colors">
+                        <td class="px-8 py-6">
+                            <p class="font-bold text-sm text-slate-900 dark:text-white">Advanced Mediation Training</p>
+                            <p class="text-[10px] text-primary font-black uppercase">Technical Module</p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300">July 10, 2026</p>
+                            <span class="text-[9px] font-black text-blue-500 uppercase tracking-tighter italic">Online (Zoom)</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-2">
+                                <img src="https://ui-avatars.com/api/?name=Aris+Thorne&background=0ea5e9&color=fff" class="w-6 h-6 rounded-full">
+                                <span class="text-xs font-medium">Dr. Aris Thorne</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold">42/50</span>
+                                <div class="w-16 h-1 bg-slate-100 dark:bg-white/5 rounded-full">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 84%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button class="p-2.5 bg-slate-50 dark:bg-white/5 rounded-xl text-slate-400 hover:text-primary"><i class="fas fa-link text-xs" title="Copy Meeting Link"></i></button>
+                                <button class="p-2.5 bg-slate-50 dark:bg-white/5 rounded-xl text-slate-400 hover:text-primary"><i class="fas fa-users-cog text-xs" title="Manage Roster"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="group hover:bg-slate-50/50 dark:hover:bg-white/2 transition-colors">
+                        <td class="px-8 py-6">
+                            <p class="font-bold text-sm text-slate-900 dark:text-white">Peacebuilding Field Workshop</p>
+                            <p class="text-[10px] text-orange-500 font-black uppercase">Practical Module</p>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-xs font-bold text-slate-700 dark:text-slate-300">July 15, 2026</p>
+                            <span class="text-[9px] font-black text-orange-500 uppercase tracking-tighter italic">Offline (Nairobi)</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-2">
+                                <img src="https://ui-avatars.com/api/?name=S+Jenkins&background=f97316&color=fff" class="w-6 h-6 rounded-full">
+                                <span class="text-xs font-medium">Sarah Jenkins</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold">18/20</span>
+                                <div class="w-16 h-1 bg-slate-100 dark:bg-white/5 rounded-full">
+                                    <div class="bg-orange-500 h-full rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button class="p-2.5 bg-slate-50 dark:bg-white/5 rounded-xl text-slate-400 hover:text-primary"><i class="fas fa-map-marker-alt text-xs" title="Venue Details"></i></button>
+                                <button class="p-2.5 bg-slate-50 dark:bg-white/5 rounded-xl text-slate-400 hover:text-primary"><i class="fas fa-users-cog text-xs" title="Manage Roster"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 shadow-sm">
+            <h4 class="font-black text-lg mb-6 flex items-center gap-2">
+                <i class="fas fa-chart-line text-primary"></i> Registration Trends
+            </h4>
+            <div class="flex items-end gap-3 h-32 px-4 border-b dark:border-white/5 mb-4">
+                <div class="flex-1 bg-primary/20 rounded-t-lg h-[40%]"></div>
+                <div class="flex-1 bg-primary/20 rounded-t-lg h-[70%]"></div>
+                <div class="flex-1 bg-primary/20 rounded-t-lg h-[55%]"></div>
+                <div class="flex-1 bg-primary/20 rounded-t-lg h-[90%]"></div>
+                <div class="flex-1 bg-primary/20 rounded-t-lg h-[65%]"></div>
+            </div>
+            <p class="text-xs text-slate-500 italic">Registration has increased by 15% compared to last month.</p>
+        </div>
+
+        <div class="p-8 bg-slate-900 rounded-[2.5rem] text-white relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+            <h4 class="font-black text-lg mb-6 relative z-10">Admin To-Do List</h4>
+            <ul class="space-y-4 relative z-10">
+                <li class="flex items-center gap-3 text-xs font-bold text-white/70">
+                    <i class="fas fa-check-circle text-emerald-500"></i> Send Zoom links for "Advanced Mediation"
+                </li>
+                <li class="flex items-center gap-3 text-xs font-bold text-white/70">
+                    <i class="fas fa-check-circle text-emerald-500"></i> Finalize Nairobi venue contract
+                </li>
+                <li class="flex items-center gap-3 text-xs font-bold">
+                    <div class="w-4 h-4 rounded-full border border-white/30"></div> Approve Instructor Bio for Dr. Thorne
+                </li>
+                <li class="flex items-center gap-3 text-xs font-bold">
+                    <div class="w-4 h-4 rounded-full border border-white/30"></div> Print name tags for "Peacebuilding"
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="reports" class="tab-content animate-fade-in">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+        <div>
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white">Impact Analytics</h2>
+            <p class="text-sm text-slate-500">Measure educational outreach and program effectiveness.</p>
+        </div>
+        <div class="flex gap-2 w-full lg:w-auto">
+            <button class="flex-1 lg:flex-none px-4 py-3 bg-white dark:bg-slate-900 border dark:border-white/10 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2">
+                <i class="fas fa-file-export"></i> Export CSV
+            </button>
+            <button class="flex-1 lg:flex-none px-4 py-3 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+                <i class="fas fa-print"></i> Print PDF
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/10">
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Avg. Score</span>
+            <div class="flex items-end gap-2">
+                <h3 class="text-2xl font-black">84%</h3>
+                <span class="text-emerald-500 text-[10px] font-bold mb-1"><i class="fas fa-caret-up"></i> 12%</span>
+            </div>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/10">
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Completion</span>
+            <div class="flex items-end gap-2">
+                <h3 class="text-2xl font-black">62%</h3>
+                <span class="text-red-500 text-[10px] font-bold mb-1"><i class="fas fa-caret-down"></i> 3%</span>
+            </div>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/10">
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Active Time</span>
+            <h3 class="text-2xl font-black">42m</h3>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-900 rounded-3xl border dark:border-white/10">
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Certificates</span>
+            <h3 class="text-2xl font-black">1.2k</h3>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+        <div class="lg:col-span-2 p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 shadow-sm">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="font-black text-lg">Enrollment Trends</h3>
+                <select class="bg-transparent text-xs font-bold border-none outline-none text-primary">
+                    <option>Last 12 Months</option>
+                    <option>Last 30 Days</option>
+                </select>
+            </div>
+            <div class="h-64 flex items-end justify-between gap-1 relative pt-10">
+                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                    <div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+                    <div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+                    <div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+                    <div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+                </div>
+                <div class="w-full h-full flex items-end gap-2 group">
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 30%"></div>
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 45%"></div>
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 60%"></div>
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 40%"></div>
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 80%"></div>
+                    <div class="flex-1 bg-primary/20 hover:bg-primary rounded-t-lg transition-all" style="height: 95%"></div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-4 px-2 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+            </div>
+        </div>
+
+        <div class="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 shadow-sm">
+            <h3 class="font-black text-lg mb-8">Category Success</h3>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span>Mediation</span>
+                        <span class="text-primary">92%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-primary h-full" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span>Humanitarian Law</span>
+                        <span class="text-purple-500">45%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-purple-500 h-full" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span>Leadership</span>
+                        <span class="text-emerald-500">78%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-emerald-500 h-full" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 p-4 bg-primary/5 rounded-2xl">
+                <p class="text-[10px] text-slate-500 italic leading-relaxed">
+                    <i class="fas fa-lightbulb text-primary mr-1"></i>
+                    Tip: Mediation courses show the highest completion. Consider releasing Part II.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border dark:border-white/10 shadow-sm">
+        <h3 class="font-black text-lg mb-6">Engagement by Organization</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b dark:border-white/5">
+                        <th class="pb-4 text-[10px] font-black uppercase text-slate-400">Organization</th>
+                        <th class="pb-4 text-[10px] font-black uppercase text-slate-400">Learners</th>
+                        <th class="pb-4 text-[10px] font-black uppercase text-slate-400">Total Hours</th>
+                        <th class="pb-4 text-[10px] font-black uppercase text-slate-400">Efficiency</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y dark:divide-white/5">
+                    <tr>
+                        <td class="py-4 font-bold text-sm">Red Cross International</td>
+                        <td class="py-4 text-xs">245</td>
+                        <td class="py-4 text-xs">1,890h</td>
+                        <td class="py-4 text-xs font-black text-emerald-500">High</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 font-bold text-sm">Safe Passage NGO</td>
+                        <td class="py-4 text-xs">112</td>
+                        <td class="py-4 text-xs">450h</td>
+                        <td class="py-4 text-xs font-black text-orange-500">Average</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active-tab');
+                l.classList.add('text-slate-500', 'dark:text-slate-400');
+            });
+            event.currentTarget.classList.add('active-tab');
+            event.currentTarget.classList.remove('text-slate-500', 'dark:text-slate-400');
+            
+            if (window.innerWidth < 1024) toggleSidebar();
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('admin-theme', isDark ? 'dark' : 'light');
+        }
+
+        function toggleDirection() {
+            const html = document.getElementById('admin-html');
+            const dir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', dir);
+            localStorage.setItem('admin-dir', dir);
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('admin-theme') === 'dark') document.documentElement.classList.add('dark');
+            if (localStorage.getItem('admin-dir')) document.getElementById('admin-html').setAttribute('dir', localStorage.getItem('admin-dir'));
+        }
+    </script>
+</body>
+</html>

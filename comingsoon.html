@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/handshake.png">
+    <title>Coming Soon | Peace NGO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#1e40af' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 transition-colors duration-300 antialiased font-sans overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full z-50 px-4 md:px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+        <div class="flex items-center space-x-2 md:space-x-3">
+            <button onclick="toggleDirection()" class="h-9 md:h-10 px-2 md:px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex items-center space-x-1 md:space-x-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+                <i class="fas fa-language text-gray-500 text-sm"></i>
+                <span id="dir-label" class="text-[10px] md:text-xs font-bold uppercase text-gray-700 dark:text-gray-200">LTR</span>
+            </button>
+            <button onclick="toggleTheme()" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+                <i id="theme-icon" class="fas fa-moon text-gray-500 text-sm"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="min-h-screen flex items-center justify-center p-4 relative">
+        <div class="absolute top-1/4 -left-10 w-48 md:w-72 h-48 md:h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 -right-10 w-64 md:w-96 h-64 md:h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+
+        <div class="text-center relative z-10 w-full max-w-3xl pt-12">
+            <span class="inline-block px-3 py-1 mb-4 md:mb-6 text-[9px] md:text-xs font-black uppercase tracking-[0.2em] text-primary bg-primary/10 rounded-full">
+                Launching Summer 2026
+            </span>
+            
+            <h1 class="text-2xl sm:text-3xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 md:mb-6 leading-tight">
+                Building Better <br><span class="text-primary">Conflict Solutions.</span>
+            </h1>
+            
+            <p class="text-xs md:text-lg text-gray-600 dark:text-gray-400 mb-8 md:mb-10 max-w-xs md:max-w-md mx-auto">
+                Our advanced NGO mediation portal is almost ready. Join the waitlist for early access.
+            </p>
+
+            <div class="grid grid-cols-4 gap-1.5 sm:gap-4 mb-10 md:mb-12 w-full max-w-[340px] md:max-w-xl mx-auto">
+                <div class="bg-white dark:bg-gray-900 p-2 md:p-6 rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-lg md:shadow-xl">
+                    <span id="days" class="block text-lg md:text-4xl font-black text-primary">00</span>
+                    <span class="text-[8px] md:text-xs uppercase font-bold text-gray-400">Days</span>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-2 md:p-6 rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-lg md:shadow-xl">
+                    <span id="hours" class="block text-lg md:text-4xl font-black text-primary">00</span>
+                    <span class="text-[8px] md:text-xs uppercase font-bold text-gray-400">Hrs</span>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-2 md:p-6 rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-lg md:shadow-xl">
+                    <span id="minutes" class="block text-lg md:text-4xl font-black text-primary">00</span>
+                    <span class="text-[8px] md:text-xs uppercase font-bold text-gray-400">Min</span>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-2 md:p-6 rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 shadow-lg md:shadow-xl">
+                    <span id="seconds" class="block text-lg md:text-4xl font-black text-primary">00</span>
+                    <span class="text-[8px] md:text-xs uppercase font-bold text-gray-400">Sec</span>
+                </div>
+            </div>
+
+            <form class="flex flex-col sm:flex-row gap-3 max-w-[320px] md:max-w-md mx-auto mb-10 px-2 sm:px-0">
+                <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 md:py-4 rounded-xl md:rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 outline-none focus:ring-2 focus:ring-primary dark:text-white transition-all text-sm">
+                <button class="w-full sm:w-auto px-6 py-3 md:py-4 bg-primary text-white font-bold rounded-xl md:rounded-2xl shadow-lg shadow-blue-500/20 hover:bg-blue-600 hover:-translate-y-1 active:scale-95 transition-all text-sm whitespace-nowrap">
+                    Notify Me
+                </button>
+            </form>
+
+            <div class="flex justify-center space-x-6 text-gray-400">
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-twitter text-lg md:text-xl"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-linkedin-in text-lg md:text-xl"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-instagram text-lg md:text-xl"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const root = document.getElementById('root-html');
+        const themeIcon = document.getElementById('theme-icon');
+        const dirLabel = document.getElementById('dir-label');
+
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+            }
+            if (localStorage.getItem('direction') === 'rtl') {
+                root.setAttribute('dir', 'rtl');
+                dirLabel.innerText = 'RTL';
+            }
+            startCountdown();
+        };
+
+        function toggleTheme() {
+            if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                themeIcon.className = 'fas fa-moon text-gray-500';
+                localStorage.setItem('theme', 'light');
+            } else {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleDirection() {
+            if (root.getAttribute('dir') === 'rtl') {
+                root.setAttribute('dir', 'ltr');
+                dirLabel.innerText = 'LTR';
+                localStorage.setItem('direction', 'ltr');
+            } else {
+                root.setAttribute('dir', 'rtl');
+                dirLabel.innerText = 'RTL';
+                localStorage.setItem('direction', 'rtl');
+            }
+        }
+
+        function startCountdown() {
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+
+            function update() {
+                const now = new Date().getTime();
+                const diff = launchDate - now;
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+                document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+                document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+                document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+            }
+            setInterval(update, 1000);
+            update();
+        }
+    </script>
+</body>
+</html>

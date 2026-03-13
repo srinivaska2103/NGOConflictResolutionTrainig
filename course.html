@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/handshake.png">
+    <title>NGO Conflict Resolution Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af', // Blue 800
+                        secondary: '#0f766e', // Teal 700
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for better UI */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-track { background: #1f2937; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+<nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            
+            <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <div id="desktop-nav" class="hidden lg:flex lg:space-x-2 xl:space-x-4 items-center">
+                <a href="index.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Home</a>
+                <a href="home2.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Home2</a>
+                <a href="course.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Courses</a>
+                <a href="instructor.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Instructors</a>
+                <a href="resosurce.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Resources</a>
+                
+                <div class="relative group">
+                    <button class="flex items-center hover:text-primary px-2 py-2 text-sm font-medium">
+                        Dashboard <i class="fas fa-chevron-down ml-1 text-[10px]"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block w-48 bg-white dark:bg-gray-700 shadow-xl rounded-md mt-1 py-2 border border-gray-100 dark:border-gray-600">
+                        <a href="user.html" class="nav-link block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">User Dashboard</a>
+                        <a href="admin.html" class="nav-link block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="nav-link hover:text-primary px-2 py-2 text-sm font-medium transition-colors">Contact</a>
+            </div>
+
+            <div class="hidden lg:flex items-center lg:space-x-2 xl:space-x-3">
+                <button onclick="toggleTheme()" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <button onclick="toggleDir()" class="text-[10px] font-bold border border-gray-300 dark:border-gray-600 px-2 py-1 rounded hover:bg-primary hover:text-white transition-all">
+                    LTR/RTL
+                </button>
+               <a href="login.html" 
+   class="text-gray-900 dark:text-white 
+          /* Consistent Font Size & Weight */
+          text-base font-bold
+          
+          /* Mobile/Tablet Padding (< 1024px) */
+          px-4 py-2 
+          
+          /* 1024px (lg) - Laptop Padding */
+          lg:px-5 lg:py-2
+          
+          /* 1280px+ (xl) - Desktop Padding */
+          xl:px-7 xl:py-2.5
+          
+          /* Button Styling */
+          border-2 border-primary/20 hover:border-primary
+          rounded-lg transition-all duration-300 transform 
+          active:scale-95 inline-flex items-center justify-center 
+          whitespace-nowrap hover:bg-primary/5">
+    Login
+</a>
+   
+            </div>
+
+            <div class="lg:hidden flex items-center space-x-3">
+                <button onclick="toggleTheme()" class="p-2 text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-circle-half-stroke text-lg"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-gray-500 hover:text-primary p-2 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 shadow-inner">
+        <div id="mobile-nav" class="px-4 pt-2 pb-6 space-y-1">
+            <a href="index.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Home</a>
+            <a href="home2.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Home2</a>
+            <a href="course.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Courses</a>
+            <a href="resosurce.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Resources</a>
+            <a href="instructor.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Instructor</a>
+            <a href="contact.html" class="nav-link block px-3 py-2 text-base font-medium rounded-md">Contact</a>
+            
+            <div class="py-1">
+                <button onclick="toggleMobileDashboard()" class="w-full flex justify-between items-center px-3 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                    Dashboard
+                    <i id="mobile-dash-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+                <div id="mobile-dash-content" class="hidden pl-6 mt-1 space-y-1 bg-gray-50 dark:bg-gray-900/40 rounded-lg">
+                    <a href="user.html" class="nav-link block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 border-l-2 border-transparent">User Dashboard</a>
+                    <a href="admin.html" class="nav-link block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 border-l-2 border-transparent">Admin Dashboard</a>
+                </div>
+            </div>
+            
+            <div class="pt-4 space-y-3">
+                <button onclick="toggleDir()" class="w-full text-center px-3 py-2 text-sm font-bold text-secondary border border-secondary rounded-md">
+                    <i class="fas fa-language mr-2"></i>Switch LTR/RTL
+                </button>
+                <div class="flex flex-col items-center justify-center w-full px-6 py-8">
+    
+    <div class="w-full max-w-[280px] mx-auto">
+        <a href="login.html" 
+           class="flex items-center justify-center py-3.5 border-2 border-primary text-primary dark:text-blue-400 dark:border-blue-500/50 rounded-xl font-bold transition-all active:scale-95 hover:bg-primary/5">
+           Login
+        </a>
+    </div>
+
+   
+</div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <script>
+        function setActiveNavLink() {
+    // Get the current page filename (e.g., "index.html")
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    
+    // Select all links you want to monitor
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+
+        if (linkPath === currentPath) {
+            // Desktop/Standard Styles
+            link.classList.add('text-primary', 'font-bold');
+            
+            // Mobile Specific Styles (adds a background to active item)
+            if (link.parentElement.id === 'mobile-nav') {
+                link.classList.add('bg-blue-50', 'dark:bg-gray-700', 'text-primary');
+            }
+
+            // Dashboard Sub-link Styles
+            if (linkPath === 'user.html' || linkPath === 'admin.html') {
+                link.classList.add('border-primary');
+                link.classList.remove('border-transparent');
+                
+                // If it's a mobile sub-link, auto-open the dashboard accordion
+                const mobileDashContent = document.getElementById('mobile-dash-content');
+                if (mobileDashContent && link.closest('#mobile-dash-content')) {
+                    mobileDashContent.classList.remove('hidden');
+                    document.getElementById('mobile-dash-arrow').classList.add('rotate-180');
+                }
+            }
+        }
+    });
+}
+
+// Run the function when the page loads
+window.addEventListener('DOMContentLoaded', setActiveNavLink);
+    </script>
+
+    <section class="relative min-h-[80vh] flex items-center pt-24 pb-12 overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-blue-400/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            
+            <div class="w-full lg:w-3/5 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    <span class="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary">Now Enrolling for 2026</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
+                    Conflict Resolution <br class="hidden sm:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Training for NGOs</span>
+                </h1>
+
+                <p class="text-base md:text-xl text-gray-600 dark:text-gray-400 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+                    Master practical de-escalation tools and mediation frameworks designed for international aid workers and community leaders.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12">
+                    <a href="login.html" class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:bg-blue-600 hover:-translate-y-1 active:scale-95 transition-all duration-300">
+                        Enroll Now
+                    </a>
+                    <a href="404.html" class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300">
+                        Download Brochure
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 pt-8 border-t border-gray-100 dark:border-white/5">
+                    <div class="text-center lg:text-left">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Duration</p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">4 Weeks</p>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Mode</p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">Workshop</p>
+                    </div>
+                    <div class="col-span-2 md:col-span-1 text-center lg:text-left mt-4 md:mt-0">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Certification</p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">Accredited</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-2/5 relative">
+                <div class="relative rounded-[3rem] overflow-hidden aspect-square shadow-2xl group">
+                    <img src="assets/Training Session" alt="Training Session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 p-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-3xl shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                        <div class="flex items-center gap-4">
+                            <div class="flex -space-x-3">
+                                <img src="assets/t1" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800" alt="User">
+                                <img src="assets/t2" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800" alt="User">
+                                <img src="assets/t3" class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800" alt="User">
+                            </div>
+                            <div>
+                                <p class="text-sm font-black text-gray-900 dark:text-white">4.9/5 Rating</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">From 1.2k alumni</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+            <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">The Foundation</h2>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
+                Why Master <br class="sm:hidden"> Conflict Resolution?
+            </h3>
+            <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                This course equips NGO professionals with essential conflict resolution, negotiation, and mediation skills to handle disputes effectively and build stronger communities.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 shadow-xl hover:-translate-y-2 transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400 rounded-t-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <i class="fas fa-shield-alt text-2xl text-primary"></i>
+                </div>
+                
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-4">What it is</h4>
+                <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
+                    Conflict resolution is the strategic process of resolving a dispute by providing for at least some of each side's needs and addressing their interests.
+                </p>
+            </div>
+
+            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 shadow-xl hover:-translate-y-2 transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400 rounded-t-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <i class="fas fa-hands-helping text-2xl text-blue-500"></i>
+                </div>
+                
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Why NGOs Need It</h4>
+                <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
+                    In high-stakes environments, team safety and project success depend on the ability to navigate local tensions and cultural sensitivities.
+                </p>
+            </div>
+
+            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 shadow-xl hover:-translate-y-2 transition-all duration-500 md:col-span-2 lg:col-span-1">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400 rounded-t-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <i class="fas fa-chart-line text-2xl text-emerald-500"></i>
+                </div>
+                
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Community Impact</h4>
+                <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
+                    By training local leaders and staff, you move from short-term relief to long-term community resilience and sustainable peace.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="mt-16 p-8 rounded-[2rem] bg-primary text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-primary/20">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                    <i class="fas fa-quote-left text-white"></i>
+                </div>
+                <p class="text-sm md:text-lg font-bold italic">
+                    "Mediation is not just a skill, it's a security protocol."
+                </p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-2xl font-black">94%</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Reported better field outcomes</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="max-w-2xl">
+                <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">Core Curriculum</h2>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight">
+                    What You Will <span class="text-primary">Master.</span>
+                </h3>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 font-bold text-sm md:text-base border-l-2 border-primary pl-4">
+                6 Essential Modules <br> 24+ Practical Techniques
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-brain text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Conflict Types</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Identify the root causes of disputes using the Thomas-Kilmann model to select the right approach.
+                </p>
+            </div>
+
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-comment-dots text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Effective Communication</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Master active listening and "I" statements to lower defenses in high-tension environments.
+                </p>
+            </div>
+
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-balance-scale text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Mediation Techniques</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Learn the 5-step mediation process to guide two parties toward a mutually beneficial agreement.
+                </p>
+            </div>
+
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-handshake text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Negotiation Strategies</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Develop your BATNA (Best Alternative to a Negotiated Agreement) for complex NGO resource allocations.
+                </p>
+            </div>
+
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-users text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Community Disputes</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Navigate local power dynamics and cultural barriers to resolve deep-seated community issues.
+                </p>
+            </div>
+
+            <div class="group p-6 md:p-8 rounded-[2rem] bg-slate-50 dark:bg-white/5 hover:bg-primary dark:hover:bg-primary transition-all duration-500 cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                    <i class="fas fa-dove text-primary text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-white transition-colors">Peaceful Dialogue</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors leading-relaxed">
+                    Facilitate town-hall style meetings that encourage empathy and long-term reconciliation.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-16 md:py-24 bg-slate-50 dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">Curriculum Breakdown</h2>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
+                Step-by-Step <span class="text-primary">Mastery.</span>
+            </h3>
+            <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+            
+            <div class="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-900 shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div class="flex flex-col h-full">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/Conflict Analysis" alt="Conflict Analysis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-500"></div>
+                        <div class="absolute top-6 left-6 px-4 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl text-xs font-black text-primary">MODULE 01</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4">Introduction & Analysis</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-primary mr-3"></i> Understanding causes of conflict
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-primary mr-3"></i> Conflict analysis tools
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-900 shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div class="flex flex-col h-full">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/Communication" alt="Communication" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-blue-500/20 group-hover:bg-blue-500/40 transition-colors duration-500"></div>
+                        <div class="absolute top-6 left-6 px-4 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl text-xs font-black text-blue-500">MODULE 02</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4">Communication Skills</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-blue-500 mr-3"></i> Active listening mastery
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-blue-500 mr-3"></i> Non-violent communication
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-900 shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div class="flex flex-col h-full">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/Mediation" alt="Mediation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-emerald-500/20 group-hover:bg-emerald-500/40 transition-colors duration-500"></div>
+                        <div class="absolute top-6 left-6 px-4 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl text-xs font-black text-emerald-500">MODULE 03</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4">Mediation Techniques</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-emerald-500 mr-3"></i> Third-party mediation
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-emerald-500 mr-3"></i> Facilitation strategies
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-900 shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div class="flex flex-col h-full">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/Negotiation" alt="Negotiation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-amber-500/20 group-hover:bg-amber-500/40 transition-colors duration-500"></div>
+                        <div class="absolute top-6 left-6 px-4 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl text-xs font-black text-amber-500">MODULE 04</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4">Negotiation Skills</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i> Win-win negotiation methods
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i> Handling difficult situations
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          <div class="md:col-span-2 group relative overflow-hidden rounded-[2.5rem] bg-white text-gray-900 shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:bg-gray-900 dark:text-white dark:border-white/5">
+    <div class="flex flex-col lg:flex-row h-full">
+        <div class="relative w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden">
+            <img src="assets/case Studies" alt="Case Studies" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors"></div>
+        </div>
+        
+        <div class="w-full lg:w-1/2 p-10 flex flex-col justify-center">
+            <div class="inline-block px-4 py-2 bg-primary/10 rounded-xl text-xs font-black mb-6 w-max text-primary">MODULE 05</div>
+            <h4 class="text-3xl font-black mb-4 tracking-tight">Practical Case Studies</h4>
+            <p class="text-gray-600 dark:text-gray-400 mb-8 text-sm leading-relaxed">Apply everything you've learned through immersive NGO scenarios and interactive role-play exercises.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <i class="fas fa-users-cog text-primary"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest">NGO Scenarios</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <i class="fas fa-play text-primary"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest">Role-Play</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="max-w-3xl mb-12 text-center md:text-center lg:text-left md:mx-auto lg:mx-0">
+    <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">
+        At a Glance
+    </h2>
+    <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight">
+        Logistics & <span class="text-primary">Requirements.</span>
+    </h3>
+    <div class="mt-4 h-1 w-12 bg-primary mx-auto lg:mx-0 rounded-full"></div>
+</div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+            
+            <div class="group relative overflow-hidden p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:bg-primary transition-colors duration-500">
+                        <i class="far fa-calendar-alt text-xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Duration</p>
+                    <p class="text-lg font-bold text-gray-900 dark:text-white">4–6 Weeks</p>
+                </div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                    <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=60&w=400" class="w-full h-full object-cover" alt="Duration">
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:bg-primary transition-colors duration-500">
+                        <i class="fas fa-laptop-house text-xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Training Mode</p>
+                    <p class="text-lg font-bold text-gray-900 dark:text-white">Hybrid / Online</p>
+                </div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                    <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&q=60&w=400" class="w-full h-full object-cover" alt="Mode">
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:bg-primary transition-colors duration-500">
+                        <i class="fas fa-layer-group text-xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Level</p>
+                    <p class="text-lg font-bold text-gray-900 dark:text-white">Beg. to Int.</p>
+                </div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=60&w=400" class="w-full h-full object-cover" alt="Level">
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:bg-primary transition-colors duration-500">
+                        <i class="fas fa-globe text-xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Language</p>
+                    <p class="text-lg font-bold text-gray-900 dark:text-white">English</p>
+                </div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                    <img src="https://images.unsplash.com/photo-1451187530230-b9854a9307c0?auto=format&fit=crop&q=60&w=400" class="w-full h-full object-cover" alt="Language">
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 sm:col-span-2 lg:col-span-1">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center mb-6 shadow-sm group-hover:bg-primary transition-colors duration-500">
+                        <i class="fas fa-certificate text-xl text-primary group-hover:text-white"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Certification</p>
+                    <p class="text-lg font-bold text-gray-900 dark:text-white">Accredited</p>
+                </div>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=60&w=400" class="w-full h-full object-cover" alt="Certification">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-16 md:py-24 bg-slate-50 dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">Expert Guidance</h2>
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
+                Learn from <span class="text-primary">Global Leaders.</span>
+            </h3>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                Our instructors are active field practitioners with over a decade of experience resolving conflicts in some of the world's most complex environments.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            
+            <div class="group relative flex flex-col items-center text-center">
+                <div class="relative w-48 h-48 md:w-56 md:h-56 mb-8">
+                    <div class="absolute inset-0 bg-primary/20 rounded-full scale-110 blur-2xl group-hover:bg-primary/40 transition-all duration-700"></div>
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl z-10">
+                        <img src="assets/i1" alt="Dr. Aris Thorne" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute bottom-2 right-2 w-12 h-12 bg-primary rounded-full border-4 border-white dark:border-gray-800 flex items-center justify-center z-20">
+                        <i class="fas fa-award text-white text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-2">Dr. Aris Thorne</h4>
+                    <p class="text-primary font-bold text-sm uppercase tracking-widest mb-4">Peacebuilding Expert</p>
+                    <div class="flex items-center justify-center gap-2 mb-4 text-gray-500 dark:text-gray-400 text-xs font-bold">
+                        <i class="fas fa-briefcase text-primary"></i> 12+ Years Experience
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 px-4">
+                        Specializes in cross-border mediation and institutional negotiation frameworks for major international NGOs.
+                    </p>
+                    
+                    <div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex flex-col items-center text-center">
+                <div class="relative w-48 h-48 md:w-56 md:h-56 mb-8">
+                    <div class="absolute inset-0 bg-blue-500/20 rounded-full scale-110 blur-2xl group-hover:bg-blue-500/40 transition-all duration-700"></div>
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl z-10">
+                        <img src="assets/i2" alt="Sarah Jenkins" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute bottom-2 right-2 w-12 h-12 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800 flex items-center justify-center z-20">
+                        <i class="fas fa-handshake text-white text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-2">Sarah Jenkins</h4>
+                    <p class="text-blue-500 font-bold text-sm uppercase tracking-widest mb-4">Mediation Lead</p>
+                    <div class="flex items-center justify-center gap-2 mb-4 text-gray-500 dark:text-gray-400 text-xs font-bold">
+                        <i class="fas fa-briefcase text-blue-500"></i> 10+ Years Experience
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 px-4">
+                        Former Red Cross field director focusing on community-level de-escalation and grassroots peaceful dialogue.
+                    </p>
+                    <div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex flex-col items-center text-center md:col-span-2 lg:col-span-1">
+                <div class="relative w-48 h-48 md:w-56 md:h-56 mb-8">
+                    <div class="absolute inset-0 bg-emerald-500/20 rounded-full scale-110 blur-2xl group-hover:bg-emerald-500/40 transition-all duration-700"></div>
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl z-10">
+                        <img src="assets/i3" alt="Marcus Vane" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute bottom-2 right-2 w-12 h-12 bg-emerald-500 rounded-full border-4 border-white dark:border-gray-800 flex items-center justify-center z-20">
+                        <i class="fas fa-globe-africa text-white text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-2">Marcus Vane</h4>
+                    <p class="text-emerald-500 font-bold text-sm uppercase tracking-widest mb-4">Negotiation Strategist</p>
+                    <div class="flex items-center justify-center gap-2 mb-4 text-gray-500 dark:text-gray-400 text-xs font-bold">
+                        <i class="fas fa-briefcase text-emerald-500"></i> 15+ Years Experience
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 px-4">
+                        Expert in conflict mapping and multi-party negotiation strategies for USAID-funded development projects.
+                    </p>
+                    <div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-gray-400 hover:text-emerald-500 transition-colors"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-500 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-16 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+            <div class="max-w-2xl text-center md:text-left">
+                <h2 class="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-primary mb-4">The Value Proposition</h2>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-[1.1]">
+                    Transform your <br><span class="text-primary">Operational Impact.</span>
+                </h3>
+            </div>
+            <div class="hidden lg:block w-px h-24 bg-gray-100 dark:bg-gray-800"></div>
+            <p class="text-gray-500 dark:text-gray-400 max-w-sm text-center md:text-left text-sm md:text-base italic">
+                "Conflict is inevitable, but combat is optional. Our training turns friction into progress."
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            
+            <div class="group relative p-8 md:p-10 rounded-[3rem] bg-slate-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i class="fas fa-swords text-7xl text-primary"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-primary/30">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-4">Master Conflict Management</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                        Shift from reactive firefighting to proactive resolution. Learn to identify conflict triggers before they escalate into project-halting crises.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-xs font-bold text-primary uppercase tracking-widest">
+                            <i class="fas fa-caret-right mr-2"></i> Reduced Team Downtime
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="group relative p-8 md:p-10 rounded-[3rem] bg-slate-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i class="fas fa-hand-holding-heart text-7xl text-blue-500"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-4">Strengthen Community Bonds</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                        Build deep trust with local stakeholders. Our frameworks ensure that your NGO is seen as a neutral, stabilizing force in sensitive regions.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-xs font-bold text-blue-500 uppercase tracking-widest">
+                            <i class="fas fa-caret-right mr-2"></i> Enhanced Local Acceptance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="group relative p-8 md:p-10 rounded-[3rem] bg-slate-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i class="fas fa-crown text-7xl text-emerald-500"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/30">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-4">Elevate Leadership Abilities</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                        True leadership is the ability to maintain composure under pressure. Develop the emotional intelligence required to lead teams through high-stakes negotiations.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-xs font-bold text-emerald-500 uppercase tracking-widest">
+                            <i class="fas fa-caret-right mr-2"></i> Crisis Management Skills
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="group relative p-8 md:p-10 rounded-[3rem] bg-slate-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i class="fas fa-globe-americas text-7xl text-amber-500"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-amber-500/30">
+                        <i class="fas fa-gavel text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-4">Real-World Mediation</h4>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                        No theoretical fluff. Learn battle-tested techniques used by international peacekeepers to settle disputes between armed groups and civilians.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-xs font-bold text-amber-500 uppercase tracking-widest">
+                            <i class="fas fa-caret-right mr-2"></i> Field-Ready Frameworks
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-16 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+                Voices of <span class="text-primary">Impact</span>
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Hear from the peacebuilders and NGO leaders who have transformed their communities through our training.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <div class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-primary/20">
+                <div class="absolute -top-10 left-8">
+                    <div class="relative w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-white dark:ring-gray-900 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                        <img src="assets/t1" alt="Sarah Johnson" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex justify-end mb-4">
+                    <i class="fas fa-quote-right text-4xl text-gray-100 dark:text-gray-700 transition-colors group-hover:text-primary/20"></i>
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">
+                        "The mediation techniques I learned here saved our community project from a major shutdown. It's not just a course; it's a lifeline for field workers."
+                    </p>
+                    <div class="border-t dark:border-gray-700 pt-4">
+                        <h4 class="font-bold text-gray-900 dark:text-white">Sarah Johnson</h4>
+                        <p class="text-xs font-semibold text-primary uppercase tracking-wider">Project Manager, Global Reach</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-secondary/20">
+                <div class="absolute -top-10 left-8">
+                    <div class="relative w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-white dark:ring-gray-900 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                        <img src="assets/t2" alt="David Chen" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex justify-end mb-4">
+                    <i class="fas fa-quote-right text-4xl text-gray-100 dark:text-gray-700 transition-colors group-hover:text-secondary/20"></i>
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">
+                        "I've attended many workshops, but the focus on 'Conflict Resolution' specifically for NGOs is what makes this program stand out globally."
+                    </p>
+                    <div class="border-t dark:border-gray-700 pt-4">
+                        <h4 class="font-bold text-gray-900 dark:text-white">David Chen</h4>
+                        <p class="text-xs font-semibold text-secondary uppercase tracking-wider">Community Leader, East Peace</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-primary/20 md:col-span-2 lg:col-span-1">
+                <div class="absolute -top-10 left-8">
+                    <div class="relative w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-white dark:ring-gray-900 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                        <img src="assets/t3" alt="Amara Okafor" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex justify-end mb-4">
+                    <i class="fas fa-quote-right text-4xl text-gray-100 dark:text-gray-700 transition-colors group-hover:text-primary/20"></i>
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-gray-600 dark:text-gray-300 italic leading-relaxed mb-6">
+                        "The trainers understand the local context. They didn't just give us theory; they gave us tools we used the very next day in the field."
+                    </p>
+                    <div class="border-t dark:border-gray-700 pt-4">
+                        <h4 class="font-bold text-gray-900 dark:text-white">Amara Okafor</h4>
+                        <p class="text-xs font-semibold text-primary uppercase tracking-wider">Volunteer Coordinator</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-12 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="relative group p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-white/5 overflow-hidden shadow-2xl transition-all duration-500">
+            
+            <div class="absolute -top-[50%] -left-[10%] w-[120%] h-[200%] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 dark:from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center">
+                
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 mb-8 shadow-sm backdrop-blur-md">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-600"></span>
+                    </span>
+                    <span class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">Limited Seats for March 2026</span>
+                </div>
+
+                <h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] mb-8 tracking-tighter">
+                    Ready to Transform <br class="hidden md:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-primary dark:from-blue-400 dark:to-primary">Your Leadership?</span>
+                </h2>
+
+                <p class="text-base md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-12 leading-relaxed">
+                    Join a global network of NGO professionals mastering the art of high-stakes mediation. Secure your certification and lead with confidence.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                    <a href="login.html" class="w-full sm:w-auto px-12 py-6 bg-primary text-white text-center font-black rounded-2xl shadow-xl shadow-primary/30 hover:bg-blue-600 hover:-translate-y-1.5 active:scale-95 transition-all duration-300">
+                        Enroll in Course
+                    </a>
+                    <a href="contact.html" class="w-full sm:w-auto px-12 py-6 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-center font-black rounded-2xl shadow-sm hover:bg-slate-50 dark:hover:bg-white/10 transition-all duration-300">
+                        Speak to an Advisor
+                    </a>
+                </div>
+
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-white/5 w-full max-w-4xl">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Trusted by teams at</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700">
+                        <span class="text-xl md:text-2xl font-black text-slate-800 dark:text-white">UNICEF</span>
+                        <span class="text-xl md:text-2xl font-black text-slate-800 dark:text-white">OXFAM</span>
+                        <span class="text-xl md:text-2xl font-black text-slate-800 dark:text-white">USAID</span>
+                        <span class="text-xl md:text-2xl font-black text-slate-800 dark:text-white">MSF</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 dark:bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+        </div>
+
+        <p class="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+            Have questions about group discounts? 
+            <a href="#" class="text-primary font-bold hover:underline">Contact our NGO Relations team.</a>
+        </p>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+    <footer class="bg-gray-100 dark:bg-gray-900 pt-16 pb-8 border-t dark:border-gray-800 font-sans transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+               <a href="index.html" class="flex-shrink-0">
+                <div class="flex items-center group cursor-pointer">
+                    <div class="relative w-10 h-10 md:w-11 md:h-11 mr-2 md:mr-3 flex items-center justify-center bg-gradient-to-br from-primary to-blue-600 dark:from-blue-500 dark:to-indigo-600 rounded-xl shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                        <i class="fas fa-handshake text-white text-lg md:text-xl z-10"></i>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-xl"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                            PEACE<span class="text-primary dark:text-blue-400">NGO</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium max-w-xs">
+                    Dedicated to empowering global NGOs with the tools needed to navigate complex interpersonal and organizational disputes.
+                </p>
+                <div class="flex space-x-5 mt-6 justify-center md:justify-start">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all hover:scale-110"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="w-full text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">
+                    Quick Links
+                </h4>
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-4 text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    <li class="flex justify-center md:justify-start">
+                        <a href="index.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Home
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="about.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>About
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="courses.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Courses
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="instructors.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Instructor
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="contact.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Contact
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="404.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>404
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="resosurce.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Resources
+                        </a>
+                    </li>
+                    <li class="flex justify-center md:justify-start">
+                        <a href="comingsoon.html" class="hover:text-primary transition-colors flex items-center">
+                            <i class="fas fa-chevron-right text-[10px] mr-2 opacity-40"></i>Comingsoon
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Contact Us</h4>
+                <ul class="text-sm space-y-5 text-gray-600 dark:text-gray-400 font-medium">
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <span>123 Peace Plaza, Geneva</span>
+                    </li>
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span>info@ngo-training.org</span>
+                    </li>
+                    <li class="flex flex-col items-center md:flex-row md:items-start">
+                        <span class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-0 md:mr-3 text-primary shrink-0">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span>+1 234 567 890</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center md:text-left">
+                <h4 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Newsletter</h4>
+                <p class="text-sm mb-6 text-gray-600 dark:text-gray-400 font-medium">Stay updated with our latest strategies.</p>
+                <form class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary outline-none text-sm transition-all">
+                    <button class="bg-primary text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors font-bold text-sm shadow-lg shadow-blue-500/20">
+                        Join
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-8 mt-8 flex flex-col items-center md:flex-row md:justify-between text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest text-center">
+            <p class="mb-4 md:mb-0">&copy; 2026 NGO Training Portal. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.className = 'fas fa-moon';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // Direction Toggle Logic
+        function toggleDir() {
+            const html = document.documentElement;
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        }
+
+        // Load Preferences
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = 'fas fa-sun';
+            }
+            if (localStorage.getItem('direction')) {
+                document.documentElement.setAttribute('dir', localStorage.getItem('direction'));
+            }
+        };
+        // Toggle Mobile Dashboard Dropdown
+function toggleMobileDashboard() {
+    const content = document.getElementById('mobile-dash-content');
+    const arrow = document.getElementById('mobile-dash-arrow');
+    
+    content.classList.toggle('hidden');
+    // Rotates the arrow when open
+    arrow.classList.toggle('rotate-180');
+}
+
+// Ensure the mobile menu button still works
+// const btn = document.getElementById('mobile-menu-button');
+// const menu = document.getElementById('mobile-menu');
+// btn.addEventListener('click', () => {
+//     menu.classList.toggle('hidden');
+// });
+    </script>
+</body>
+</html>
